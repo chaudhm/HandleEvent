@@ -8,9 +8,6 @@ class MyComponent extends React.Component {
         name: 'Chau',
         chanel: 'IT'
     }
-    state2 = {
-        name: 'key'
-    }
 
 
     /*
