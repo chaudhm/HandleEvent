@@ -8,6 +8,9 @@ class MyComponent extends React.Component {
         name: 'Chau',
         chanel: 'IT'
     }
+    state2 = {
+        name: 'key'
+    }
 
 
     /*
@@ -27,12 +30,13 @@ class MyComponent extends React.Component {
 
     render() {
 
-        // let name = 'chaudhm';
+        //let name = 'chaudhm';
+
         console.log('>>>Call render', this.state)
         return (
             <>
                 <div className="first">
-                    {/* {console.log('My name is:', name)} */}
+                    {console.log('My name is:', this.state.name)}
                     <input value={this.state.name} type='input' onChange={(event) => this.handleOnchangeName(event)} />
 
                     Hello my component, My name is {this.state.name}
