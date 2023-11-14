@@ -1,49 +1,59 @@
 import React, { Fragment } from 'react';
-
+import ChildComponent from './ChildComponent';
 
 
 class MyComponent extends React.Component {
 
-    state = {
-        name: 'Chau',
-        chanel: 'IT'
-    }
-
-
     /*
     JSX => return block
     */
-    handleOnchangeName = (event) => {
-        console.log(event.target.value, 'event target', event.target, 'event object', event)
+    state = {
+        firstName: "",
+        lastName: "",
+        arrayJob: [
+            { id: 'Job1', title: 'Developer', salary: '10000$' },
+            { id: 'Job2', title: 'Sales', salary: '2000$' },
+            { id: 'Job3', title: 'PM', salary: '3400$' },
+        ]
+    }
+
+    handleChangeFirstName = (event) => {
         this.setState({
-            name: event.target.value
+            firstName: event.target.value
         })
     }
 
-    handleOnClickButton = () => {
-        alert(this.state.name);
+    handleChangeLastName = (event) => {
+        this.setState({
+            lastName: event.target.value
+        })
+    }
 
+    handleSubmit = () => {
+        console.log('>>>> check data input', this.state)
     }
 
     render() {
 
-        //let name = 'chaudhm';
 
         console.log('>>>Call render', this.state)
         return (
             <>
-                <div className="first">
-                    {console.log('My name is:', this.state.name)}
-                    <input value={this.state.name} type='input' onChange={(event) => this.handleOnchangeName(event)} />
-
-                    Hello my component, My name is {this.state.name}
-                </div>
-                <div className="secound">
-                    My job :{this.state.chanel}
-                </div>
-                <div className="third">
-                    <button onClick={() => this.handleOnClickButton()}>Click Me</button>
-                </div>
+                <form>
+                    <label htmlFor='fname'>First name:</label><br />
+                    <input onChange={(event) => this.handleChangeFirstName(event)}
+                        type="text" value={this.state.firstName} /><br />
+                    <label htmlFor='lname'>Last name:</label><br />
+                    <input onChange={(event) => this.handleChangeLastName(event)}
+                        type="text" value={this.state.lastName} /><br />
+                    <input type="button"
+                        onClick={() => this.handleSubmit()} value="Submit" />
+                </form>
+                <ChildComponent
+                    name={this.state.firstName}
+                    age='25'
+                    address='HCM'
+                    arrJobs={this.state.arrayJob} />
             </>
         )
     }
